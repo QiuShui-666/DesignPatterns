@@ -28,14 +28,17 @@ class GraphicEditor {
     }
 
     public void drawRectangle(Shape s) {
+        System.out.println(s.m_type);
         System.out.println("绘制矩形");
     }
 
     public void drawCircle(Shape s) {
+        System.out.println(s.m_type);
         System.out.println("绘制圆形");
     }
 
     public void drawTriangle(Shape s) {
+        System.out.println(s.m_type);
         System.out.println("绘制三角形");
     }
 
