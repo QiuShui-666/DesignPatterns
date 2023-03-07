@@ -1,8 +1,5 @@
 package com.atguigu.factory_pattern.simple_factory_pattern.pizza_store.order;
 
-import com.atguigu.factory_pattern.simple_factory_pattern.pizza_store.pizza.CheesePizza;
-import com.atguigu.factory_pattern.simple_factory_pattern.pizza_store.pizza.GreekPizza;
-import com.atguigu.factory_pattern.simple_factory_pattern.pizza_store.pizza.PepperPizza;
 import com.atguigu.factory_pattern.simple_factory_pattern.pizza_store.pizza.Pizza;
 
 import java.io.BufferedReader;
@@ -11,25 +8,59 @@ import java.io.InputStreamReader;
 
 public class OrderPizza {
 
-    public OrderPizza() {
-        Pizza pizza;
+    public SimpleFactory getSimpleFactory() {
+        return simpleFactory;
+    }
+
+    public void setSimpleFactory(SimpleFactory simpleFactory) {
+        this.simpleFactory = simpleFactory;
+    }
+
+//    public OrderPizza() {
+//        Pizza pizza;
+//        String orderType;
+//        do {
+//            orderType = getType();
+//            if (orderType.equals("greek")) {
+//                pizza = new GreekPizza();
+//            } else if (orderType.equals("cheese")) {
+//                pizza = new CheesePizza();
+//            } else if (orderType.equals("pepper")) {
+//                pizza = new PepperPizza();
+//            } else {
+//                break;
+//            }
+//            // 输出 pizza 制作过程
+//            pizza.prepare();
+//            pizza.bake();
+//            pizza.cut();
+//            pizza.box();
+//        } while (true);
+//    }
+
+    public OrderPizza(SimpleFactory simpleFactory) {
+        setFactory(simpleFactory);
+    }
+
+    private SimpleFactory simpleFactory;
+
+    public void setFactory(SimpleFactory simpleFactory) {
+        setSimpleFactory(simpleFactory);
+
         String orderType;
+        Pizza pizza;
         do {
             orderType = getType();
-            if (orderType.equals("greek")) {
-                pizza = new GreekPizza();
-            } else if (orderType.equals("cheese")) {
-                pizza = new CheesePizza();
-            } else if (orderType.equals("pepper")) {
-                pizza = new PepperPizza();
+            pizza = getSimpleFactory().createPizza(orderType);
+            if (pizza != null) {
+                pizza.prepare();
+                pizza.bake();
+                pizza.cut();
+                pizza.box();
             } else {
+                System.out.println("订购失败！！！");
                 break;
             }
-            // 输出 pizza 制作过程
-            pizza.prepare();
-            pizza.bake();
-            pizza.cut();
-            pizza.box();
         } while (true);
     }
 
