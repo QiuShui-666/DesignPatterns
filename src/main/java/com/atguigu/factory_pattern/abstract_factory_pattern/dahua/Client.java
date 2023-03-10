@@ -8,11 +8,20 @@ public class Client {
 
         IFactory factory = new AccessFactory();
 
-        IUser iu = factory.createUser();
+//        IUser iu = factory.createUser();
+//        iu.insert(user);
+//        iu.getUser(1);
+//
+//        IDepartment id = factory.createDepartment();
+//        id.insert(department);
+//        id.getDepartment(1);
+
+        // 用简单工厂来改进抽象工厂
+        IUser iu = DataAccess.createUser();
         iu.insert(user);
         iu.getUser(1);
 
-        IDepartment id = factory.createDepartment();
+        IDepartment id = DataAccess.createDepartment();
         id.insert(department);
         id.getDepartment(1);
     }
